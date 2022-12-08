@@ -1,5 +1,16 @@
 import random
 from magasin import produit as prod
+from liste_client import (
+    liste_adrs,
+    liste_CP,
+    liste_email_at,
+    liste_age,
+    liste_nom,
+    liste_prenom,
+    liste_telephone,
+    sexe,
+    rrv,
+)
 import pandas as pd
 import openpyxl
 from openpyxl import workbook, load_workbook
@@ -90,7 +101,7 @@ minutes = [
     58,
     59,
 ]
-sepration = "---------------"
+
 # generate hours
 
 
@@ -103,12 +114,51 @@ for lines in range(1):
 # declaration rayon
 rayons = [r_fruits_legumes, r_dph, r_epicerie, r_liquides, r_frais]
 # ---------------------------------
+
+# client profil---------------------------
+nb_prenom_max = len(liste_prenom) - 1
+nb_nom_max = len(liste_nom) - 1
+nb_adrs_max = len(liste_adrs) - 1
+nb_type_mail_max = len(liste_email_at) - 1
+nb_for_gen_tel_max = len(liste_telephone) - 1
+nb_age_max = len(liste_age) - 1
+nb_rrv_max = len(rrv) - 1
+nb_sex_max = len(sexe) - 1
+
+
+# client profile gen
+# name gen
+random_prenom = random.randint(0, nb_prenom_max)
+current_prenom = liste_prenom[random_prenom]
+# last name gen
+random_nom = random.randint(0, nb_nom_max)
+current_nom = liste_nom[random_nom]
+# age gen
+random_age = random.randint(0, nb_age_max)
+current_age = liste_age[random_age]
+# email creation
+random_atmail = random.randint(0, nb_type_mail_max)
+current_at_mail = liste_email_at[random_atmail]
+current_email = current_prenom + current_nom
+current_full_mail = current_email + current_at_mail
+
+# -----print test client
+print(
+    "Client généré :",
+    current_prenom,
+    current_nom,
+    current_age,
+    "ans",
+    "email:",
+    current_full_mail,
+)
+
 # ouvrir excel
 wb = load_workbook("data.xlsx")
 ws = wb.active
 
 # SIMULATION d'un achat au hasard
-for loops in range(0, 110):
+for loops in range(0, 2):
 
     random_rayon = random.randint(0, 4)
     current_random_rayon = rayons[random_rayon]
