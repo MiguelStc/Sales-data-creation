@@ -16,6 +16,11 @@ import openpyxl
 from openpyxl import workbook, load_workbook
 from Item import r_fruits_legumes, r_frais, r_dph, r_epicerie, r_liquides
 
+
+def sep():
+    print("-----------------")
+
+
 hours = [
     0,
     2,
@@ -124,7 +129,7 @@ nb_for_gen_tel_max = len(liste_telephone) - 1
 nb_age_max = len(liste_age) - 1
 nb_rrv_max = len(rrv) - 1
 nb_sex_max = len(sexe) - 1
-
+nb_cp_max = len(liste_CP) - 1
 
 # client profile gen
 # name gen
@@ -136,29 +141,62 @@ current_nom = liste_nom[random_nom]
 # age gen
 random_age = random.randint(0, nb_age_max)
 current_age = liste_age[random_age]
-# email creation
+# email creation----
 random_atmail = random.randint(0, nb_type_mail_max)
 current_at_mail = liste_email_at[random_atmail]
 current_email = current_prenom + current_nom
 current_full_mail = current_email + current_at_mail
+# adress gen----
+random_home_nb = random.randint(1, 200)
 
+random_rrv = random.randint(0, nb_rrv_max)
+current_rrv = rrv[random_rrv]
+
+random_adress = random.randint(0, nb_adrs_max)
+current_adress = liste_adrs[random_adress]
+
+random_cp = random.randint(0, nb_cp_max)
+current_cp = liste_CP[random_cp]
+# num tel gen
+random_tel_digit = random.randint(111111, 999999)
+random_tel_digit_str = str(random_tel_digit)
+
+random_tel_sart = random.randint(0, nb_for_gen_tel_max)
+current_tel_start = liste_telephone[random_tel_sart]
+current_full_tel_generated = current_tel_start + random_tel_digit_str
 # -----print test client
+# sex gen-----
+random_sexe = random.randint(0, nb_sex_max)
+current_sexe = sexe[random_sexe]
+# ----------
+sep()
 print(
-    "Client généré :",
-    current_prenom,
-    current_nom,
+    current_prenom.capitalize(),
+    current_nom.capitalize(),
     current_age,
-    "ans",
-    "email:",
-    current_full_mail,
+    "Ans \n",
+    "Email:",
+    current_full_mail.capitalize(),
+    "\n",
+    "Adresse : ",
+    random_home_nb,
+    current_rrv,
+    current_adress.capitalize(),
+    current_cp,
+    "\n",
+    "Téléphone :",
+    current_full_tel_generated,
+    "\n",
+    "Sexe :",
+    current_sexe,
 )
-
+sep()
 # ouvrir excel
 wb = load_workbook("data.xlsx")
 ws = wb.active
 
 # SIMULATION d'un achat au hasard
-for loops in range(0, 2):
+for loops in range(0, 7):
 
     random_rayon = random.randint(0, 4)
     current_random_rayon = rayons[random_rayon]

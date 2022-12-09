@@ -302,7 +302,7 @@ liste_nom = [
     "Guillaume",
     "Lecomte",
 ]
-liste_telephone = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+liste_telephone = ["0603", "0477", "0675", "0475", "0495", "0494", "0388", "0755"]
 liste_email_at = [
     "@gmail.com",
     "@outlook.com",
